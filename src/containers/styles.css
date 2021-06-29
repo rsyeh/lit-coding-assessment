@@ -1,0 +1,26 @@
+.App-landing {
+  display: flex;
+  justify-content: center;
+}
+
+.App-landing a button {
+  font-size: 1rem;
+}
+
+.Products-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.Products-page .App-header {
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.Products-page h1 {
+  margin: 2rem;
+}
+
+.Products-page h2 {
+  font-weight: 300;
+}

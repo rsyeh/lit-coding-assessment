@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Route from './components/Route';
-import AppForm from './containers/AppForm';
+import ProductPage from './containers/ProductPage';
 import Landing from './containers/Landing';
 
 function App() {
@@ -11,8 +10,8 @@ function App() {
       <Route path="/">
         <Landing />
       </Route>
-      <Route path="/form">
-        <AppForm />
+      <Route path="/products">
+        <ProductPage />
       </Route>
     </div>
   );
