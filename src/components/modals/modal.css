@@ -1,0 +1,19 @@
+#modal {
+  position: fixed;
+  margin: auto;
+  padding-top: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 500px;
+  background-color: #62656C;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  opacity: 1;
+  visibility: visible;
+
+}

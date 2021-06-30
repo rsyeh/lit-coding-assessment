@@ -1,9 +1,9 @@
-.App-landing {
+.Landing-page {
   display: flex;
   justify-content: center;
 }
 
-.App-landing a button {
+.Landing-page a button {
   font-size: 1rem;
 }
 

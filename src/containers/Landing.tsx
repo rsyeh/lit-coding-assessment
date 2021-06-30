@@ -4,13 +4,13 @@ import './styles.css';
 function Landing() {
 
   return (
-    <div className="App-landing">
-      <header className="App-header">
+    <div className="Landing-page">
+      <header className="header">
       <h1>
         Lonsdale Investment Technology: Coding Assessment
       </h1>
       <a className="app-form-link" href="/products">
-        <button className="Nav-button">
+        <button className="Landing-nav-button">
           Go to product page
         </button>
       </a>
