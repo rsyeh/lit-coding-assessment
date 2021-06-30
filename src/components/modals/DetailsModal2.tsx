@@ -71,7 +71,7 @@ function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {
       <label>
         Clothing Type:
         <div>
-          <select name="clothingType">
+          <select name="clothingType" onChange={handleChange}>
             <option value="shirt">Shirt</option>
             <option value="t-shirt">T-Shirt</option>
             <option value="sweater">Sweater</option>

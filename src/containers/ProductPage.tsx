@@ -65,18 +65,33 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
     }
   }
 
-  handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    alert('A name was submitted: ' + this.state.formValues.brand);
-    e.preventDefault();
+  handleSubmit = e => {
+    if (this.state.currentModalState === 1) {
+      this.setState({ currentModalState: 2 });
+      e.preventDefault();
+    } else {
+      this.setState({ isModalOpen: false });
+      this.setState({ currentModalState: 1 });
+      alert('Form was submitted!');
+      e.preventDefault();
+    }
   }
 
   renderModalChildren = () => {
-    return (
-      <DetailsModal2
-        handleChange={this.handleChange}
-        fileInput={this.fileInput}
-        formValues={this.state.formValues} />
-    );
+    if (this.state.currentModalState === 1) {
+      return (
+        <DetailsModal1
+          handleChange={this.handleChange}
+          fileInput={this.fileInput}
+          formValues={this.state.formValues} />
+      );
+    } else {
+      return (
+        <DetailsModal2
+          handleChange={this.handleChange}
+          formValues={this.state.formValues} />
+      );
+    }
   }
 
   render() {
@@ -97,6 +112,7 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
           showModal={this.state.isModalOpen}
           onClose={this.hideModal}
           handleSubmit={this.handleSubmit}
+          currentModalState={this.state.currentModalState}
           >
           {this.renderModalChildren()}
         </Modal>
