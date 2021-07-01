@@ -2,7 +2,13 @@ import React from 'react';
 
 type DetailsModal2Props = {
   handleChange: any,
-  formValues: object
+  formValues: {
+    datePurchased: date,
+    size: string,
+    clothingType: string,
+    hasBeenWorn: boolean,
+    price: number
+  }
 }
 
 function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {

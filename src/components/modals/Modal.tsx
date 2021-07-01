@@ -6,7 +6,9 @@ type ModalProps = {
   children: any,
   onClose: any,
   handleSubmit: any,
-  currentModalState: number
+  handleGoBack: any,
+  currentModalState: number,
+  title: string
 };
 
 type ModalState = {
@@ -17,7 +19,8 @@ class Modal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {
     super(props);
     this.state = {
-      modalContents: 'first'
+      modalContents: 'first',
+      title: 'Modal'
     }
   }
 
@@ -31,16 +34,25 @@ class Modal extends React.Component<ModalProps, ModalState> {
     }
     return (
       <div class="modal" id="modal">
-        <h2>Modal </h2>
+        <div className="header">
+          <h2>{this.props.title}</h2>
+          <button class="close-button" onClick={this.props.onClose}>
+            X
+          </button>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-container">
             <div class="content">{this.props.children}</div>
             <div class="footer">
-              <button class="close-button" onClick={this.props.onClose}>
-                X
-              </button>
+              <div>
+                {this.props.currentModalState !== 1 ? (
+                  <button class="close-button" onClick={this.props.handleGoBack}>
+                    Back
+                  </button>
+                ) : null}
+              </div>
               <button type="submit">
-                {this.props.currentModalState === 1 ? 'Continue' : 'Submit'}
+                {this.props.currentModalState !== 3 ? 'Continue' : 'Submit'}
               </button>
             </div>
           </div>

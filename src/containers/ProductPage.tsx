@@ -4,6 +4,12 @@ import Modal from '../components/modals/Modal';
 import DetailsModal1 from '../components/modals/DetailsModal1';
 import DetailsModal2 from '../components/modals/DetailsModal2';
 
+const modalTitles = {
+  1: 'Product Details 1',
+  2: 'Product Details 2',
+  3: 'Review Product Details'
+}
+
 type ProductPageProps = {};
 
 type ProductPageState = {
@@ -65,6 +71,16 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
     }
   }
 
+  handleGoBack = e => {
+    if (this.state.currentModalState === 2) {
+      this.setState({ currentModalState: 1 });
+      e.preventDefault();
+    } else {
+      this.setState({ currentModalState: 2 });
+      e.preventDefault();
+    }
+  }
+
   handleSubmit = e => {
     if (this.state.currentModalState === 1) {
       this.setState({ currentModalState: 2 });
@@ -95,6 +111,7 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
   }
 
   render() {
+    const modalTitle = modalTitles[this.state.currentModalState];
     return (
       <div className="Products-page">
         <div className="App-header">
@@ -112,7 +129,9 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
           showModal={this.state.isModalOpen}
           onClose={this.hideModal}
           handleSubmit={this.handleSubmit}
+          handleGoBack={this.handleGoBack}
           currentModalState={this.state.currentModalState}
+          title={modalTitle}
           >
           {this.renderModalChildren()}
         </Modal>

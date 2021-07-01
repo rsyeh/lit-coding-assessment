@@ -2,10 +2,15 @@ import React from 'react';
 
 type DetailsModal1Props = {
   handleChange: any,
-  fileInput: any
+  fileInput: any,
+  formValues: {
+    brand: string,
+    description: string,
+    picture: file
+  }
 }
 
-function DetailsModal1({ handleChange, fileInput }: DetailsModal1Props) {
+function DetailsModal1({ handleChange, fileInput, formValues = {} }: DetailsModal1Props) {
   return (
     <div className="modal-contents">
       <label>
