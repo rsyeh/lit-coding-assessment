@@ -41,12 +41,12 @@ function ReviewModal({ formValues = {} }) {
         <div className="review-label">
           Picture
           {formValues.picture ? (
-            <img
-              src={formValues.picture}
-              alt="Product Picture"
-              height= "40"
-              width= "40"
-              />
+            <div className="review-picture-container">
+              <img
+                src={formValues.picture}
+                alt="Product Picture"
+                />
+            </div>
           ): <p>No picture</p>}
           </div>
       </label>

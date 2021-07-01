@@ -12,7 +12,7 @@ type DetailsModal1Props = {
 
 function DetailsModal1({ handleChange, fileInput, formValues = {} }: DetailsModal1Props) {
   return (
-    <div className="modal-contents">
+    <div className="modal-contents align-items-center">
       <label>
         Brand
       </label>
@@ -52,8 +52,6 @@ function DetailsModal1({ handleChange, fileInput, formValues = {} }: DetailsModa
           <img
             src={formValues.picture}
             alt="Product Picture"
-            height= "40"
-            width= "40"
             />
         </div>
       )}

@@ -4,6 +4,7 @@ import Modal from '../components/modals/Modal';
 import DetailsModal1 from '../components/modals/DetailsModal1';
 import DetailsModal2 from '../components/modals/DetailsModal2';
 import ReviewModal from '../components/modals/ReviewModal';
+import ProductAd from '../components/ProductAd';
 
 const modalTitles = {
   1: 'Product Details 1',
@@ -138,9 +139,12 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
         </div>
         <div className="Products-content">
           <h2>Product Ad</h2>
+          {this.state.isProductCreated ? (
+            <ProductAd formValues={this.state.formValues} />
+          ) : null}
           <div className="Products-add">
             <button onClick={this.showModal}>
-              Generate Product Ad
+              {this.state.isProductCreated ? 'Edit Ad' : 'Generate Ad'}
             </button>
           </div>
         </div>
