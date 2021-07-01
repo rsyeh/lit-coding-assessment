@@ -1,20 +1,110 @@
 import React from 'react';
-import './styles.css';
 
-function ReviewModal() {
+type ReviewModalProps = {
+  formValues: {
+    brand: string,
+    description: string,
+    picture: file,
+    datePurchased: date,
+    size: string,
+    clothingType: string,
+    hasBeenWorn: boolean,
+    price: number
+  }
+}
+
+function ReviewModal({ formValues = {} }) {
   return (
-    <div className="Products-page">
-      <div className="header">
-        <h1>Products Page</h1>
-      </div>
-      <div className="Products-content">
-        <h2>Products List</h2>
-        <div className="Products-add">
-          <button>
-            Add Product
-          </button>
+    <div className="modal-contents">
+      <label>
+        <div className="review-label">
+          Brand
+          <input
+            value={formValues.brand}
+            type="text"
+            name="brand"
+            disabled
+            />
         </div>
-      </div>
+      </label>
+      <label>
+        <div className="review-label">
+          Description
+          <textarea
+            value={formValues.description}
+            name="description"
+            disabled
+            />
+          </div>
+      </label>
+      <label>
+        <div className="review-label">
+          Picture
+          {formValues.picture ? (
+            <img
+              src={formValues.picture}
+              alt="Product Picture"
+              height= "40"
+              width= "40"
+              />
+          ): <p>No picture</p>}
+          </div>
+      </label>
+      <label>
+        <div className="review-label">
+          Date Purchased
+          <input
+            value={formValues.datePurchased}
+            type="date"
+            name="datePurchased"
+            disabled
+            />
+          </div>
+      </label>
+      <label>
+        <div className="review-label">
+          Size
+          <input
+            value={formValues.size}
+            type="text"
+            name="size"
+            disabled
+            />
+          </div>
+      </label>
+      <label>
+        <div className="review-label">
+          Clothing Type
+          <input
+            value={formValues.clothingType}
+            type="text"
+            name="clothingType"
+            disabled
+            />
+          </div>
+      </label>
+      <label>
+        <div className="review-label">
+          Item has been worn?
+          <input
+            checked={formValues.hasBeenWorn}
+            type="checkbox"
+            name="hasBeenWorn"
+            disabled
+            />
+          </div>
+      </label>
+      <label>
+        <div className="review-label">
+          Asking Price ($)
+          <input
+            value={formValues.price}
+            type="text"
+            name="hasBeenWorn"
+            disabled
+            />
+          </div>
+      </label>
     </div>
   );
 }

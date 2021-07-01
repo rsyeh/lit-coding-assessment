@@ -18,9 +18,11 @@ function DetailsModal1({ handleChange, fileInput, formValues = {} }: DetailsModa
       </label>
       <div>
         <input
+          value={formValues.brand}
           type="text"
           name="brand"
           onChange={handleChange}
+          required
           />
       </div>
       <label>
@@ -28,8 +30,10 @@ function DetailsModal1({ handleChange, fileInput, formValues = {} }: DetailsModa
       </label>
       <div>
         <textarea
+          value={formValues.description}
           name="description"
           onChange={handleChange}
+          required
           />
       </div>
       <label>
@@ -43,6 +47,16 @@ function DetailsModal1({ handleChange, fileInput, formValues = {} }: DetailsModa
           onChange={handleChange}
           />
       </div>
+      {formValues.picture && (
+        <div className="picture-container">
+          <img
+            src={formValues.picture}
+            alt="Product Picture"
+            height= "40"
+            width= "40"
+            />
+        </div>
+      )}
     </div>
   );
 }

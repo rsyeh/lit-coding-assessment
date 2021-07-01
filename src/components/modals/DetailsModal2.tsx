@@ -1,5 +1,16 @@
 import React from 'react';
 
+const getDate = () => {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth()).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  // today = mm + '/' + dd + '/' + yyyy;
+  today = yyyy + '-' + mm + '-' + dd;
+  return today;
+}
+
 type DetailsModal2Props = {
   handleChange: any,
   formValues: {
@@ -12,6 +23,7 @@ type DetailsModal2Props = {
 }
 
 function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {
+  const maxDate = getDate();
   return (
     <div className="modal-contents">
       <label>
@@ -19,8 +31,10 @@ function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {
       </label>
       <div>
         <input
+          value={formValues.datePurchased}
           type="date"
           name="datePurchased"
+          max={maxDate}
           onChange={handleChange}
           />
       </div>
@@ -30,67 +44,78 @@ function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {
       <div>
         <label>
           <input
+            checked={formValues.size === 'XS'}
             type="radio"
             name="size"
             value="XS"
             onChange={handleChange}
+            required
             />
           XS
         </label>
         <label>
           <input
+            checked={formValues.size === 'S'}
             type="radio"
             name="size"
             value="S"
             onChange={handleChange}
+            required
             />
           S
         </label>
         <label>
           <input
+            checked={formValues.size === 'M'}
             type="radio"
             name="size"
             value="M"
             onChange={handleChange}
+            required
             />
           M
         </label>
         <label>
           <input
+            checked={formValues.size === 'L'}
             type="radio"
             name="size"
             value="L"
             onChange={handleChange}
+            required
             />
           L
         </label>
         <label>
           <input
+            checked={formValues.size === 'XL'}
             type="radio"
             name="size"
             value="XL"
             onChange={handleChange}
+            required
             />
           XL
         </label>
       </div>
-      <label>
-        Clothing Type:
-        <div>
-          <select name="clothingType" onChange={handleChange}>
-            <option value="shirt">Shirt</option>
-            <option value="t-shirt">T-Shirt</option>
-            <option value="sweater">Sweater</option>
-            <option value="shorts">Shorts</option>
-            <option value="pants">Pants</option>
-            <option value="jacket">Jacket</option>
-            <option value="shoes">Shoes</option>
-            <option value="accessory">Accessory</option>
-          </select>
-        </div>
-      </label>
+      <label>Clothing Type</label>
+      <div>
+        <select value={formValues.clothingType} name="clothingType" onChange={handleChange} required>
+          <option value=""></option>
+          <option value="shirt">Shirt</option>
+          <option value="t-shirt">T-Shirt</option>
+          <option value="sweater">Sweater</option>
+          <option value="shorts">Shorts</option>
+          <option value="pants">Pants</option>
+          <option value="jacket">Jacket</option>
+          <option value="shoes">Shoes</option>
+          <option value="accessory">Accessory</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
       <label>
         <input
+          checked={formValues.hasBeenWorn}
           type="checkbox"
           name="hasBeenWorn"
           onChange={handleChange}
@@ -98,10 +123,12 @@ function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {
         Item has been worn?
       </label>
       <label>
-        Asking Price
+        Asking Price ($)
       </label>
       <div>
         <input
+          value={formValues.price}
+          defaultValue="0"
           type="range"
           name="price"
           min="0"

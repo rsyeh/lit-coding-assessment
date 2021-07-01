@@ -54,6 +54,10 @@
   flex-direction: column;
 }
 
+#modal .modal-contents .picture-container {
+  padding: 10px;
+}
+
 #modal label {
   padding: 10px 0px;
 }
@@ -62,3 +66,19 @@
   margin-top: 0px;
   font-size: 0.8rem;
 }
+
+#modal label .review-label {
+  padding: 0px 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* #modal input[type=checkbox][disabled] {
+  color: #000;
+}
+
+#modal input[type=checkbox][disabled] .checkmark:after {
+  border: solid #000;
+  color: #000;
+} */

@@ -10,7 +10,7 @@ function App() {
       <Route path="/">
         <Landing />
       </Route>
-      <Route path="/products">
+      <Route path="/product">
         <ProductPage />
       </Route>
     </div>

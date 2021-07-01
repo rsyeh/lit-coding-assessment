@@ -3,6 +3,7 @@ import './styles.css';
 import Modal from '../components/modals/Modal';
 import DetailsModal1 from '../components/modals/DetailsModal1';
 import DetailsModal2 from '../components/modals/DetailsModal2';
+import ReviewModal from '../components/modals/ReviewModal';
 
 const modalTitles = {
   1: 'Product Details 1',
@@ -24,7 +25,8 @@ type ProductPageState = {
     hasBeenWorn: boolean,
     price: number
   },
-  currentModalState: number
+  currentModalState: number,
+  isProductCreated: boolean
 };
 
 class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
@@ -33,7 +35,8 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
 
     this.state = {
       isModalOpen: false,
-      currentModalState: 1
+      currentModalState: 1,
+      isProductCreated: false
     };
 
     this.showModal = this.showModal.bind(this);
@@ -46,6 +49,7 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
   }
 
   showModal = () => {
+    this.setState({ isProductCreated: false });
     this.setState({ isModalOpen: true });
   }
 
@@ -54,13 +58,20 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
   }
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
+    if (e.target.type === 'file') {
       this.setState({
         formValues: {
           ...this.state.formValues,
           [e.target.name]: URL.createObjectURL(e.target.files[0])
         }
       });
+    } else if (e.target.type === 'checkbox') {
+      this.setState({
+        formValues: {
+          ...this.state.formValues,
+          [e.target.name]: e.target.checked
+        }
+      })
     } else {
       this.setState({
         formValues: {
@@ -85,9 +96,13 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
     if (this.state.currentModalState === 1) {
       this.setState({ currentModalState: 2 });
       e.preventDefault();
+    } else if (this.state.currentModalState === 2) {
+      this.setState({ currentModalState: 3 });
+      e.preventDefault();
     } else {
       this.setState({ isModalOpen: false });
       this.setState({ currentModalState: 1 });
+      this.setState({ isProductCreated: true });
       alert('Form was submitted!');
       e.preventDefault();
     }
@@ -101,11 +116,15 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
           fileInput={this.fileInput}
           formValues={this.state.formValues} />
       );
-    } else {
+    } else if (this.state.currentModalState === 2) {
       return (
         <DetailsModal2
           handleChange={this.handleChange}
           formValues={this.state.formValues} />
+      )
+    } else {
+      return (
+        <ReviewModal formValues={this.state.formValues} />
       );
     }
   }
@@ -115,13 +134,13 @@ class ProductPage extends React.Component<ProductPageProps, ProductPageState> {
     return (
       <div className="Products-page">
         <div className="App-header">
-          <h1>Products Page</h1>
+          <h1>Product Page</h1>
         </div>
         <div className="Products-content">
-          <h2>Products List</h2>
+          <h2>Product Ad</h2>
           <div className="Products-add">
             <button onClick={this.showModal}>
-              Add Product
+              Generate Product Ad
             </button>
           </div>
         </div>

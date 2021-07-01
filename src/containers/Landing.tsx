@@ -9,7 +9,7 @@ function Landing() {
       <h1>
         Lonsdale Investment Technology: Coding Assessment
       </h1>
-      <a className="app-form-link" href="/products">
+      <a className="app-form-link" href="/product">
         <button className="Landing-nav-button">
           Go to product page
         </button>
