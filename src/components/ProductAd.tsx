@@ -26,14 +26,26 @@ function ProductAd({ formValues }: ProductAdProps) {
       <hr />
       <div className="body">
         <div className="body-text">
-          <p><b>Date Purchased:</b></p>
-          <p>{datePurchased || 'Not Available'}</p>
-          <p><b>Size:</b></p>
-          <p>{size}</p>
-          <p><b>Clothing Type:</b></p>
-          <p>{clothingType}</p>
-          <p><b>Asking Price:</b></p>
-          <p>{price ? `$${price}` : 'DM for pricing details'}</p>
+          <div className="body-text-row">
+            <div className="body-text-component">
+              <p><b>Date Purchased:</b></p>
+              <p>{datePurchased || 'Not Available'}</p>
+            </div>
+            <div className="body-text-component">
+              <p><b>Size:</b></p>
+              <p>{size}</p>
+            </div>
+          </div>
+          <div className="body-text-row">
+            <div className="body-text-component">
+              <p><b>Clothing Type:</b></p>
+              <p>{clothingType}</p>
+            </div>
+            <div className="body-text-component">
+              <p><b>Asking Price:</b></p>
+              <p>{price ? `$${price}` : 'DM for pricing details'}</p>
+            </div>
+          </div>
         </div>
         <div className="body-pic">
           {picture ? (
