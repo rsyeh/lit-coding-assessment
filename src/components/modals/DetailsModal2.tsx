@@ -1,20 +1,20 @@
 import React from 'react';
 
+// Get today's date to set max limit for date input
 const getDate = () => {
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth()).padStart(2, '0');
-  var yyyy = today.getFullYear();
+  const date = new Date();
+  var dd = String(date.getDate()).padStart(2, '0');
+  var mm = String(date.getMonth() + 1).padStart(2, '0');
+  const yyyy = date.getFullYear();
 
-  // today = mm + '/' + dd + '/' + yyyy;
-  today = yyyy + '-' + mm + '-' + dd;
+  const today = yyyy + '-' + mm + '-' + dd;
   return today;
 }
 
 type DetailsModal2Props = {
   handleChange: any,
   formValues: {
-    datePurchased: date,
+    datePurchased: any,
     size: string,
     clothingType: string,
     hasBeenWorn: boolean,
@@ -22,7 +22,8 @@ type DetailsModal2Props = {
   }
 }
 
-function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {
+function DetailsModal2({ handleChange, formValues }: DetailsModal2Props) {
+  // Reference to today's date
   const maxDate = getDate();
   return (
     <div className="modal-contents">
@@ -127,8 +128,7 @@ function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {
       </label>
       <div>
         <input
-          value={formValues.price}
-          defaultValue="0"
+          value={formValues.price || 0}
           type="range"
           name="price"
           min="0"
@@ -136,7 +136,7 @@ function DetailsModal2({ handleChange, formValues = {} }: DetailsModal2Props) {
           onChange={handleChange}
           />
       </div>
-      <p>{formValues.price && `$${formValues.price}`}</p>
+      <p>{formValues.price ? `$${formValues.price}` : '$0'}</p>
     </div>
   );
 }

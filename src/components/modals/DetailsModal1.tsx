@@ -6,11 +6,11 @@ type DetailsModal1Props = {
   formValues: {
     brand: string,
     description: string,
-    picture: file
+    picture: any
   }
 }
 
-function DetailsModal1({ handleChange, fileInput, formValues = {} }: DetailsModal1Props) {
+function DetailsModal1({ handleChange, fileInput, formValues }: DetailsModal1Props) {
   return (
     <div className="modal-contents align-items-center">
       <label>
@@ -51,7 +51,7 @@ function DetailsModal1({ handleChange, fileInput, formValues = {} }: DetailsModa
         <div className="picture-container">
           <img
             src={formValues.picture}
-            alt="Product Picture"
+            alt="product for show"
             />
         </div>
       )}

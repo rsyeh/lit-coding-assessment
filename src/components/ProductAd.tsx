@@ -5,8 +5,8 @@ type ProductAdProps = {
   formValues: {
     brand: string,
     description: string,
-    picture: file,
-    datePurchased: date,
+    picture: any,
+    datePurchased: any,
     size: string,
     clothingType: string,
     hasBeenWorn: boolean,
@@ -14,28 +14,33 @@ type ProductAdProps = {
   }
 }
 
-function ProductAd({ formValues = {} }) {
+function ProductAd({ formValues }: ProductAdProps) {
+  const { brand, description, hasBeenWorn, datePurchased, size, clothingType, price, picture } = formValues;
   return (
     <div id="product-ad" className="product-ad">
       <div className="header">
-        <h2>{formValues.brand}</h2>
-        <p>{formValues.description}</p>
-        <p>{formValues.hasBeenWorn ? 'Used' : 'New'}</p>
+        <h2>{brand}</h2>
+        <p>{description}</p>
+        <p>{hasBeenWorn ? 'Used' : 'New'}</p>
       </div>
       <hr />
       <div className="body">
         <div className="body-text">
           <p><b>Date Purchased:</b></p>
-          <p>{formValues.datePurchased || 'Not Available'}</p>
+          <p>{datePurchased || 'Not Available'}</p>
           <p><b>Size:</b></p>
-          <p>{formValues.size}</p>
+          <p>{size}</p>
           <p><b>Clothing Type:</b></p>
-          <p>{formValues.clothingType}</p>
+          <p>{clothingType}</p>
           <p><b>Asking Price:</b></p>
-          <p>{formValues.price ? `$${formValues.price}` : 'DM for pricing details'}</p>
+          <p>{price ? `$${price}` : 'DM for pricing details'}</p>
         </div>
         <div className="body-pic">
-          <img src={formValues.picture} alt="No Picture" />
+          {picture ? (
+            <img src={picture} alt="product for show" />
+          ) : (
+            <h3>No Picture</h3>
+          )}
         </div>
       </div>
     </div>

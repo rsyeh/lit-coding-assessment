@@ -11,55 +11,46 @@ type ModalProps = {
   title: string
 };
 
-type ModalState = {
-  modalContents: string
-};
-
-class Modal extends React.Component<ModalProps, ModalState> {
-  constructor(props: ModalProps) {
-    super(props);
-    this.state = {
-      modalContents: 'first',
-      title: 'Modal'
-    }
+function Modal ({
+  showModal,
+  children,
+  onClose,
+  handleSubmit,
+  handleGoBack,
+  currentModalState,
+  title
+}: ModalProps) {
+  if (!showModal) {
+    return null;
   }
-
-  handleSubmit = (e) => {
-    this.props.handleSubmit && this.props.handleSubmit(e);
-  }
-
-  render() {
-    if (!this.props.showModal) {
-      return null;
-    }
-    return (
-      <div class="modal" id="modal">
-        <div className="header">
-          <h2>{this.props.title}</h2>
-          <button class="close-button" onClick={this.props.onClose}>
-            X
-          </button>
-        </div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-container">
-            <div class="content">{this.props.children}</div>
-            <div class="footer">
-              <div>
-                {this.props.currentModalState !== 1 ? (
-                  <button class="close-button" onClick={this.props.handleGoBack}>
-                    Back
-                  </button>
-                ) : null}
-              </div>
-              <button type="submit">
-                {this.props.currentModalState !== 3 ? 'Continue' : 'Submit'}
-              </button>
-            </div>
-          </div>
-        </form>
+  return (
+    <div className="modal" id="modal">
+      <div className="header">
+        <h2>{title}</h2>
+        <button className="close-button" onClick={onClose}>
+          X
+        </button>
       </div>
-    );
-  }
+      <form onSubmit={handleSubmit}>
+        <div className="form-container">
+          <div className="content">{children}</div>
+          <div className="footer">
+            <div>
+              {/* If Modal is on step 1, do not show back button */}
+              {currentModalState !== 1 ? (
+                <button className="close-button" onClick={handleGoBack}>
+                  Back
+                </button>
+              ) : null}
+            </div>
+            <button type="submit">
+              {currentModalState !== 3 ? 'Continue' : 'Submit'}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default Modal;

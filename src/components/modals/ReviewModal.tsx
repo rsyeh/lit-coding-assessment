@@ -4,8 +4,8 @@ type ReviewModalProps = {
   formValues: {
     brand: string,
     description: string,
-    picture: file,
-    datePurchased: date,
+    picture: any,
+    datePurchased: any,
     size: string,
     clothingType: string,
     hasBeenWorn: boolean,
@@ -13,7 +13,7 @@ type ReviewModalProps = {
   }
 }
 
-function ReviewModal({ formValues = {} }) {
+function ReviewModal({ formValues }: ReviewModalProps) {
   return (
     <div className="modal-contents">
       <label>
@@ -44,7 +44,7 @@ function ReviewModal({ formValues = {} }) {
             <div className="review-picture-container">
               <img
                 src={formValues.picture}
-                alt="Product Picture"
+                alt="product for show"
                 />
             </div>
           ): <p>No picture</p>}
